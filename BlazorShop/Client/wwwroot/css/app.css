@@ -48,3 +48,27 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+//our css
+
+.price{
+    color:green;
+}
+.original-price{
+    text-decoration:line-through;
+}
+.media-img-wrapper {
+    width:200px;
+    height:200px;
+    text-align:center;
+}
+.media-img{
+    max-height:200px;
+    max-width:200px;
+    border-radius: 6px;
+    margin-bottom:10px;
+    transition:transform .2s;
+}
+.media-img:hover {
+    transform:scale(1.1);
+}
