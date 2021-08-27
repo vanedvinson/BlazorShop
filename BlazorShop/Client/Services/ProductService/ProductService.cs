@@ -18,7 +18,7 @@ namespace BlazorShop.Client.Services.ProductService
                 {
                     ID=1,
                     CategoryID=1,
-                    Title="The Hitchhiker's Guide to the Galaxy",
+                    Title="Proizvod 1 - kat1",
                     Descripton="Some description",
                     ImageLink="https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
                     Price=9.99m,
@@ -28,7 +28,7 @@ namespace BlazorShop.Client.Services.ProductService
                 {
                     ID=2,
                     CategoryID=3,
-                    Title="The Hitchhiker's Guide to the Galaxy 2",
+                    Title="Proizvod 2 - kat3",
                     Descripton="Some description 2",
                     ImageLink="https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
                     Price=19.99m,
@@ -38,7 +38,7 @@ namespace BlazorShop.Client.Services.ProductService
                 {
                     ID=3,
                     CategoryID=1,
-                    Title="The Hitchhiker's Guide to the Galaxy",
+                    Title="Proizvod 3 - kat1",
                     Descripton="Some description",
                     ImageLink="https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
                     Price=9.99m,
@@ -48,7 +48,7 @@ namespace BlazorShop.Client.Services.ProductService
                 {
                     ID=4,
                     CategoryID=1,
-                    Title="The Hitchhiker's Guide to the Galaxy",
+                    Title="Proizvod 4 - kat1",
                     Descripton="Some description",
                     ImageLink="https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
                     Price=9.99m,
@@ -57,8 +57,8 @@ namespace BlazorShop.Client.Services.ProductService
                 new Product
                 {
                     ID=5,
-                    CategoryID=1,
-                    Title="The Hitchhiker's Guide to the Galaxy",
+                    CategoryID=3,
+                    Title="Proizvod 5 - kat3",
                     Descripton="Some description",
                     ImageLink="https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
                     Price=9.99m,
@@ -67,8 +67,8 @@ namespace BlazorShop.Client.Services.ProductService
                 new Product
                 {
                     ID=6,
-                    CategoryID=1,
-                    Title="The Hitchhiker's Guide to the Galaxy",
+                    CategoryID=2,
+                    Title="Proizvod 6 - kat2",
                     Descripton="Some description",
                     ImageLink="https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
                     Price=9.99m,
