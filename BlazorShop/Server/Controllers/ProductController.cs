@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BlazorShop.Server.Services.ProductService;
+using BlazorShop.Shared.Classes;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +13,16 @@ namespace BlazorShop.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+        public async Task<ActionResult<List<Product>>> GetAllProducts()
+        {
+            return Ok(await _productService.GetAllProducts());
+        }
     }
 }
