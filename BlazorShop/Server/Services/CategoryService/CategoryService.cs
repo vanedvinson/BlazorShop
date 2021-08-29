@@ -10,9 +10,9 @@ namespace BlazorShop.Server.Services.CategoryService
     {
         public List<Category> Categories { get; set; } = new List<Category>
             {
-                new Category {ID=1, Name="Feder Klompe", URL="feder", Icon="book"},
-                new Category {ID=2, Name="Vazdusne Klompe", URL="vazdusne-klompe", Icon="fire"},
-                new Category {ID=3, Name="Poliuretanske Klompe", URL="pu-klompe", Icon="check"},
+                new Category {ID=1, Name="Category 1", URL="category1", Icon="book"},
+                new Category {ID=2, Name="Category 2", URL="category2", Icon="fire"},
+                new Category {ID=3, Name="Category 3", URL="category3", Icon="check"},
             };
         public async Task<List<Category>> GetCategories()
         {

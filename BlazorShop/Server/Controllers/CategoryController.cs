@@ -1,4 +1,5 @@
-﻿using BlazorShop.Shared.Classes;
+﻿using BlazorShop.Server.Services.CategoryService;
+using BlazorShop.Shared.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,15 +13,17 @@ namespace BlazorShop.Server.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+        private readonly ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<Category>>> GetCategories()
         {
-            return Ok(new List<Category>
-                {
-                    new Category {ID=1, Name="Category 1", URL="category1", Icon="book"},
-                    new Category {ID=2, Name="Category 2", URL="category2", Icon="fire"},
-                    new Category {ID=3, Name="Category 3", URL="category3", Icon="check"},
-                });
+            return Ok(await _categoryService.GetCategories());
         }
     }
 }
