@@ -12,6 +12,8 @@ namespace BlazorShop.Client.Services.ProductService
     {
         private readonly HttpClient _http;
 
+        public event Action OnChange;
+
         public List<Product> Products { get; set; } = new List<Product>();
 
         public ProductService(HttpClient http)
@@ -22,6 +24,7 @@ namespace BlazorShop.Client.Services.ProductService
         public async Task LoadProducts(string CategoryUrl = null)
         {
             Products = await _http.GetFromJsonAsync<List<Product>>($"api/Product/{CategoryUrl}");
+            OnChange.Invoke();
         }
     }
 }
