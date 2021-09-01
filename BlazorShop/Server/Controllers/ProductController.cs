@@ -19,10 +19,16 @@ namespace BlazorShop.Server.Controllers
         {
             _productService = productService;
         }
-
+        [HttpGet]
         public async Task<ActionResult<List<Product>>> GetAllProducts()
         {
             return Ok(await _productService.GetAllProducts());
         }
+        [HttpGet("{CategoryUrl}")]
+        public async Task<ActionResult<List<Product>>> GetProductsByCategory(string CategoryUrl)
+        {
+            return Ok(await _productService.GetProductsByCategory(CategoryUrl));
+        }
     }
 }
+ 

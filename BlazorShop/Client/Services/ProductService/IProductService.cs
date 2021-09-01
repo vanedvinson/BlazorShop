@@ -10,6 +10,6 @@ namespace BlazorShop.Client.Services.ProductService
     {
         List<Product> Products { get; set; }
 
-        Task LoadProducts();
+        Task LoadProducts(string CategoryUrl = null);
     }
 }

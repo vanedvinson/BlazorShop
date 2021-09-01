@@ -18,7 +18,7 @@ namespace BlazorShop.Server.Services.ProductService
         }
         public async Task<List<Product>> GetProductsByCategory(string CategoryURL)
         {
-            throw new NotImplementedException();
+            return Products.Where(p => p.CategoryID == 1).ToList();
         }
         public List<Product> Products { get; set; } = new List<Product>
             {

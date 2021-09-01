@@ -18,5 +18,5 @@ namespace BlazorShop.Server.Services.CategoryService
         {
             return Categories;
         }
-    }
+     }
 }

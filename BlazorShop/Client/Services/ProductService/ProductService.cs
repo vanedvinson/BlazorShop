@@ -19,9 +19,9 @@ namespace BlazorShop.Client.Services.ProductService
             _http = http;
         }
 
-        public async Task LoadProducts()
+        public async Task LoadProducts(string CategoryUrl = null)
         {
-            Products = await _http.GetFromJsonAsync<List<Product>>("api/Product");
+            Products = await _http.GetFromJsonAsync<List<Product>>($"api/Product/{CategoryUrl}");
         }
     }
 }

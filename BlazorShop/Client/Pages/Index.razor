@@ -2,6 +2,7 @@
 @page "/{categoryurl}"
 
 @inject ICategoryService CategoryService
+@inject IProductService ProductService
 
 @if(category is not null)
             {
@@ -22,8 +23,10 @@
 
     private Category category = null;
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync ()
     {
+        await ProductService.LoadProducts(Categoryurl);
+
         if(Categoryurl is not null)
         {
             category = CategoryService.Categories.FirstOrDefault(c => c.URL.ToLower().Equals(Categoryurl.ToLower()));
