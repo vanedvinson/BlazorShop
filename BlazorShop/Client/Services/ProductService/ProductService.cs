@@ -22,9 +22,23 @@ namespace BlazorShop.Client.Services.ProductService
         }
 
         public async Task LoadProducts(string CategoryUrl = null)
-        {
-            Products = await _http.GetFromJsonAsync<List<Product>>($"api/Product/{CategoryUrl}");
+        { 
+            if(CategoryUrl == null)
+            {
+                Products = await _http.GetFromJsonAsync<List<Product>>("api/Product");
+            }
+            else
+            {
+                Products = await _http.GetFromJsonAsync<List<Product>>($"api/Product/Category/{CategoryUrl}");
+            }
             OnChange.Invoke();
         }
+
+        public async Task<Product> GetProduct(int ID)
+        {
+            return await _http.GetFromJsonAsync<Product>($"api/Product/{ID}");
+        }
+
+
     }
 }

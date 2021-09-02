@@ -1,4 +1,5 @@
-﻿using BlazorShop.Shared.Classes;
+﻿using BlazorShop.Server.Services.CategoryService;
+using BlazorShop.Shared.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +9,26 @@ namespace BlazorShop.Server.Services.ProductService
 {
     public class ProductService : IProductService
     {
+        private readonly ICategoryService _categoryService;
+
+        public ProductService(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
         public async Task<List<Product>> GetAllProducts()
         {
             return Products;
         }
         public async Task<Product> GetProduct(int ID)
         {
-            throw new NotImplementedException();
+            Product product = Products.FirstOrDefault(p => p.ID == ID);
+            return product;
         }
         public async Task<List<Product>> GetProductsByCategory(string CategoryURL)
         {
-            return Products.Where(p => p.CategoryID == 1).ToList();
+            Category category = await _categoryService.GetCategoryByUrl(CategoryURL);
+            return Products.Where(p => p.CategoryID == category.ID).ToList();
         }
         public List<Product> Products { get; set; } = new List<Product>
             {
