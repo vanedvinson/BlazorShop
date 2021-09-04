@@ -20,42 +20,7 @@ namespace BlazorShop.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Edition>().HasData(
-                new Edition { ID = 1, Name = "Blue"},
-                new Edition { ID = 2, Name = "Green"},
-                new Edition { ID = 3, Name = "Red"},
-                new Edition { ID = 4, Name = "Yellow"},
-                new Edition { ID = 5, Name = "Pink"},
-                new Edition { ID = 6, Name = "White"},
-                new Edition { ID = 7, Name = "Black"}
-            );
-
-            modelBuilder.SharedTypeEntity<Dictionary<string, object>>("EditionProduct")
-                .HasData(
-                    new {EditionsID = 1, ProductsID = 1},
-                    new {EditionsID = 1, ProductsID = 2},
-                    new {EditionsID = 1, ProductsID = 5},
-
-                    new {EditionsID = 2, ProductsID = 3},
-                    new {EditionsID = 2, ProductsID = 2},
-                    new {EditionsID = 2, ProductsID = 5},
-
-                    new {EditionsID = 3, ProductsID = 7},
-                    new {EditionsID = 3, ProductsID = 4},
-
-                    new {EditionsID = 4, ProductsID = 4},
-                    new {EditionsID = 4, ProductsID = 1},
-
-                    new {EditionsID = 5, ProductsID = 2},
-                    new {EditionsID = 5, ProductsID = 4},
-                    new {EditionsID = 5, ProductsID = 5},
-
-                    new {EditionsID = 6, ProductsID = 6},
-                    new {EditionsID = 6, ProductsID = 7},
-                    new {EditionsID = 6, ProductsID = 1},
-                    new {EditionsID = 6, ProductsID = 3},
-                    new {EditionsID = 6, ProductsID = 4}
-                );
+            
 
             modelBuilder.Entity<Category>().HasData(
                 new Category { ID = 1, Name = "Spring", URL = "spring", Icon = "book" },
@@ -129,9 +94,51 @@ namespace BlazorShop.Server.Data
                     Price = 9.99m,
                     OriginalPrice = 19.99m,
                     DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
+                {
+                    ID = 7,
+                    CategoryID = 2,
+                    Title = "Memory Clogs - A01",
+                    Descripton = "Some description",
+                    ImageLink = "https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
+                    Price = 9.99m,
+                    OriginalPrice = 19.99m,
+                    DateCreated = new DateTime(2021, 1, 1)
                 }
-                
+
             );
+            modelBuilder.Entity<Edition>().HasData(
+                new Edition { ID = 1, Name = "Blue" },
+                new Edition { ID = 2, Name = "Green" },
+                new Edition { ID = 3, Name = "Red" },
+                new Edition { ID = 4, Name = "Yellow" },
+                new Edition { ID = 5, Name = "Pink" },
+                new Edition { ID = 6, Name = "White" },
+                new Edition { ID = 7, Name = "Black" }
+            );
+
+            modelBuilder.SharedTypeEntity<Dictionary<string, object>>("EditionProduct")
+                .HasData(
+                    new { EditionsID = 1, ProductsID = 1 },
+                    new { EditionsID = 1, ProductsID = 2 },
+                    new { EditionsID = 1, ProductsID = 5 },
+                    new { EditionsID = 2, ProductsID = 3 },
+                    new { EditionsID = 2, ProductsID = 2 },
+                    new { EditionsID = 2, ProductsID = 5 },
+                    new { EditionsID = 3, ProductsID = 5 },
+                    new { EditionsID = 3, ProductsID = 4 },
+                    new { EditionsID = 4, ProductsID = 4 },
+                    new { EditionsID = 4, ProductsID = 1 },
+                    new { EditionsID = 5, ProductsID = 2 },
+                    new { EditionsID = 5, ProductsID = 4 },
+                    new { EditionsID = 5, ProductsID = 5 },
+                    new { EditionsID = 6, ProductsID = 6 },
+                    new { EditionsID = 6, ProductsID = 2 },
+                    new { EditionsID = 6, ProductsID = 1 },
+                    new { EditionsID = 6, ProductsID = 3 },
+                    new { EditionsID = 6, ProductsID = 4 }
+                );
 
 
         }
