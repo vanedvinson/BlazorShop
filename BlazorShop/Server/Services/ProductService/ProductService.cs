@@ -22,17 +22,20 @@ namespace BlazorShop.Server.Services.ProductService
 
         public async Task<List<Product>> GetAllProducts()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Include(p => p.Variants).ToListAsync();
         }
         public async Task<Product> GetProduct(int ID)
         {
-            Product product = await _context.Products.FirstOrDefaultAsync(p => p.ID == ID);
+            Product product = await _context.Products
+                .Include(p=> p.Variants)
+                .ThenInclude(v => v.Edition)
+                .FirstOrDefaultAsync(p => p.ID == ID);
             return product;
         }
         public async Task<List<Product>> GetProductsByCategory(string CategoryURL)
         {
             Category category = await _categoryService.GetCategoryByUrl(CategoryURL);
-            return await _context.Products.Where(p => p.CategoryID == category.ID).ToListAsync();
+            return await _context.Products.Include(p => p.Variants).Where(p => p.CategoryID == category.ID).ToListAsync();
         }
 
 
