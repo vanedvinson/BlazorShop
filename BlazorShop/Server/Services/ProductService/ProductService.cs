@@ -26,8 +26,7 @@ namespace BlazorShop.Server.Services.ProductService
         }
         public async Task<Product> GetProduct(int ID)
         {
-            Product product = await _context.Products
-                .Include(p=> p.Editions).FirstOrDefaultAsync(p => p.ID == ID);
+            Product product = await _context.Products.FirstOrDefaultAsync(p => p.ID == ID);
             return product;
         }
         public async Task<List<Product>> GetProductsByCategory(string CategoryURL)

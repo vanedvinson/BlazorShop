@@ -23,6 +23,5 @@ namespace BlazorShop.Shared.Classes
         public int CategoryID { get; set; }
         public DateTime? DateCreated { get; set; } = DateTime.Now;
         public DateTime? DateUpdated { get; set; }
-        public List<Edition> Editions { get; set; }
     }
 }

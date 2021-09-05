@@ -16,7 +16,6 @@ namespace BlazorShop.Server.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Edition> Editions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -108,39 +107,6 @@ namespace BlazorShop.Server.Data
                 }
 
             );
-            modelBuilder.Entity<Edition>().HasData(
-                new Edition { ID = 1, Name = "Blue" },
-                new Edition { ID = 2, Name = "Green" },
-                new Edition { ID = 3, Name = "Red" },
-                new Edition { ID = 4, Name = "Yellow" },
-                new Edition { ID = 5, Name = "Pink" },
-                new Edition { ID = 6, Name = "White" },
-                new Edition { ID = 7, Name = "Black" }
-            );
-
-            modelBuilder.SharedTypeEntity<Dictionary<string, object>>("EditionProduct")
-                .HasData(
-                    new { EditionsID = 1, ProductsID = 1 },
-                    new { EditionsID = 1, ProductsID = 2 },
-                    new { EditionsID = 1, ProductsID = 5 },
-                    new { EditionsID = 2, ProductsID = 3 },
-                    new { EditionsID = 2, ProductsID = 2 },
-                    new { EditionsID = 2, ProductsID = 5 },
-                    new { EditionsID = 3, ProductsID = 5 },
-                    new { EditionsID = 3, ProductsID = 4 },
-                    new { EditionsID = 4, ProductsID = 4 },
-                    new { EditionsID = 4, ProductsID = 1 },
-                    new { EditionsID = 5, ProductsID = 2 },
-                    new { EditionsID = 5, ProductsID = 4 },
-                    new { EditionsID = 5, ProductsID = 5 },
-                    new { EditionsID = 6, ProductsID = 6 },
-                    new { EditionsID = 6, ProductsID = 2 },
-                    new { EditionsID = 6, ProductsID = 1 },
-                    new { EditionsID = 6, ProductsID = 3 },
-                    new { EditionsID = 6, ProductsID = 4 }
-                );
-
-
         }
     }
 }
