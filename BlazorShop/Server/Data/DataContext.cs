@@ -128,7 +128,7 @@ namespace BlazorShop.Server.Data
                 new ProductVariant { ProductId = 5, EditionId = 7, Price = 22.55m, OriginalPrice = 39.00m},
                 new ProductVariant { ProductId = 5, EditionId = 3, Price = 23.55m, OriginalPrice = 38.00m},
                 new ProductVariant { ProductId = 5, EditionId = 6, Price = 24.55m, OriginalPrice = 37.00m},
-                new ProductVariant { ProductId = 6, EditionId = 6, Price = 25.55m, OriginalPrice = 34.00m},
+                new ProductVariant { ProductId = 5, EditionId = 8, Price = 25.55m, OriginalPrice = 34.00m},
 
                 new ProductVariant { ProductId = 6, EditionId = 2, Price = 35.55m, OriginalPrice = 40.00m},
                 new ProductVariant { ProductId = 6, EditionId = 6, Price = 34.55m, OriginalPrice = 41.00m},
