@@ -9,6 +9,17 @@
     <div class="media-body">
         <h2 class="mb-0">@product.Title</h2>
         <p>@product.Descripton</p>
+        @if (product.Editions is not null && product.Editions.Count() > 0) {
+            <div class="form-group">
+                <select class="form-control">
+                    @foreach (var variation in product.Editions)
+                    {
+                        <option>@variation.Name</option>
+                    }
+                </select>
+            </div>
+        }
+
         @if (product.OriginalPrice > product.Price) { 
             <h6 class="text-muted original-price">@product.OriginalPrice</h6>
         }
