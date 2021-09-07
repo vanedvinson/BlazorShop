@@ -1,6 +1,7 @@
 ﻿@page "/product/{id:int}"
 @inject IProductService ProductService
 @inject ILocalStorageService LocalStorage
+@inject IToastService ToastService
 
 
 <div class="media">
@@ -73,5 +74,7 @@ private async Task AddToCart()
     cart.Add(GetSelectedVariant());
 
     await LocalStorage.SetItemAsync("cart", cart);
+
+    ToastService.ShowSuccess(product.Title, " Added to Cart");
 }
 }

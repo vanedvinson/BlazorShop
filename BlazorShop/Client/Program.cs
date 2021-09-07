@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
+using Blazored.Toast;
 
 namespace BlazorShop.Client
 {
@@ -25,6 +26,7 @@ namespace BlazorShop.Client
             builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddBlazoredToast();
 
             await builder.Build().RunAsync();
         }
