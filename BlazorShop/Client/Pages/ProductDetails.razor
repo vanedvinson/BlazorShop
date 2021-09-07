@@ -1,5 +1,6 @@
 ﻿@page "/product/{id:int}"
 @inject IProductService ProductService
+@inject ILocalStorageService LocalStorage
 
 
 <div class="media">
@@ -27,7 +28,7 @@
                 }
             <h4 class="price">$@GetSelectedVariant().Price</h4>
         }
-        <button class="btn btn-primary"><i class="oi oi-cart"></i>&nbsp;&nbsp; Add to Cart</button>
+        <button class="btn btn-primary" @onclick="AddToCart"><i class="oi oi-cart"></i>&nbsp;&nbsp; Add to Cart</button>
     </div>
 </div>
 
@@ -48,16 +49,29 @@
 
         }*@
 
-        product = await ProductService.GetProduct(ID); //ProductService.Products.FirstOrDefault(p => p.ID == Int32.Parse(ID));
-        if (product.Variants.Count >0)
-        {
-            currentEditionId = product.Variants[0].EditionId;
-        }
+    product = await ProductService.GetProduct(ID); //ProductService.Products.FirstOrDefault(p => p.ID == Int32.Parse(ID));
+    if (product.Variants.Count >0)
+    {
+        currentEditionId = product.Variants[0].EditionId;
+    }
+}
+
+private ProductVariant GetSelectedVariant()
+{
+    var variant = product.Variants.FirstOrDefault(v => v.EditionId == currentEditionId);
+    return variant;
+}
+
+private async Task AddToCart()
+{
+    var cart = await LocalStorage.GetItemAsync<List<ProductVariant>>("cart");
+    if(cart is null)
+    {
+        cart = new List<ProductVariant>();
     }
 
-    private ProductVariant GetSelectedVariant()
-    {
-        var variant = product.Variants.FirstOrDefault(v => v.EditionId == currentEditionId);
-        return variant;
-    }
+    cart.Add(GetSelectedVariant());
+
+    await LocalStorage.SetItemAsync("cart", cart);
+}
 }
