@@ -40,5 +40,38 @@ namespace BlazorShop.Client.Services.CartService
 
             OnChange.Invoke();
         }
+
+        public async Task<List<CartItem>> GetCartItems()
+        {
+            var result = new List<CartItem>();
+            var cart = await _localStorage.GetItemAsync<List<ProductVariant>>("cart");
+
+            if(cart is null)
+            {
+                return result;
+            }
+
+            foreach (var item in cart)
+            {
+                var product = await _productService.GetProduct(item.ProductId);
+                var cartItem = new CartItem
+                {
+                    ProductId = product.ID,
+                    ProductTitle = product.Title,
+                    Image = product.ImageLink,
+                    EditionId = item.EditionId
+                };
+
+                var variant = product.Variants.Find(v => v.EditionId == item.EditionId);
+                if(variant is not null)
+                {
+                    cartItem.EditionName = variant.Edition?.Name;
+                    cartItem.Price = variant.Price;
+                }
+
+                result.Add(cartItem);
+            }
+            return result;
+        }
     }
 }
