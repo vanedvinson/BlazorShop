@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Blazored.Toast;
+using BlazorShop.Client.Services.CartService;
 
 namespace BlazorShop.Client
 {
@@ -24,9 +25,11 @@ namespace BlazorShop.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ICartService, CartService>();
 
             builder.Services.AddBlazoredLocalStorage();
             builder.Services.AddBlazoredToast();
+
 
             await builder.Build().RunAsync();
         }
