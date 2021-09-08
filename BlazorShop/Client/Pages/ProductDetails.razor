@@ -2,6 +2,7 @@
 @inject IProductService ProductService
 @inject ILocalStorageService LocalStorage
 @inject IToastService ToastService
+@inject ICartService CartService
 
 
 <div class="media">
@@ -65,16 +66,7 @@ private ProductVariant GetSelectedVariant()
 
 private async Task AddToCart()
 {
-    var cart = await LocalStorage.GetItemAsync<List<ProductVariant>>("cart");
-    if(cart is null)
-    {
-        cart = new List<ProductVariant>();
-    }
+    await CartService.AddToCart(GetSelectedVariant());
 
-    cart.Add(GetSelectedVariant());
-
-    await LocalStorage.SetItemAsync("cart", cart);
-
-    ToastService.ShowSuccess(product.Title, " Added to Cart");
 }
 }
