@@ -14,5 +14,8 @@
 @code {
     List<CartItem> cartItems = new List<CartItem>();
 
-
+    protected override async Task OnInitializedAsync()
+    {
+        cartItems = await CartService.GetCartItems();
+    }
 }
