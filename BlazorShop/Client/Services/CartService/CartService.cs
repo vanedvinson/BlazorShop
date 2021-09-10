@@ -73,5 +73,21 @@ namespace BlazorShop.Client.Services.CartService
             }
             return result;
         }
+
+        public async Task DeleteItem(CartItem item)
+        {
+            var cart = await _localStorage.GetItemAsync<List<ProductVariant>>("cart");
+
+            if(cart is null)
+            {
+                return;
+            }
+
+            var cartItem = cart.Find(p => p.ProductId == item.ProductId && p.EditionId == item.EditionId);
+            cart.Remove(cartItem);
+
+            await _localStorage.SetItemAsync("cart", cart);
+            OnChange.Invoke();
+        }
     }
 }

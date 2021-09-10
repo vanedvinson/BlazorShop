@@ -19,6 +19,7 @@ else
                 <div class="item-name">
                     <h5><a href="/product/@item.ProductId">@item.ProductTitle</a></h5>
                     <span>@item.EditionName</span>
+                    <button class="btn-delete" @onclick="@(()=> DeleteItem(item))">Delete</button>
                 </div>
                 <div class="item-price">$@item.Price</div>
             </div>
@@ -37,5 +38,13 @@ else
     protected override async Task OnInitializedAsync()
     {
         cartItems = await CartService.GetCartItems();
+    }
+
+    private async Task DeleteItem(CartItem item)
+    {
+        await CartService.DeleteItem(item);
+
+        cartItems = await CartService.GetCartItems();
+        
     }
 }
