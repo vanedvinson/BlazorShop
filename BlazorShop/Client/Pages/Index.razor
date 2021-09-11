@@ -3,17 +3,25 @@
 
 @inject ICategoryService CategoryService
 @inject IProductService ProductService
+@inject ISyncLocalStorageService LocalStorage
 
 @if(category is not null)
-            {
+{ 
     <h1>Welcome to the @category.Name Category!</h1>
     <ProductList CategoryID="@category.ID"/>
-            }
-            else
-            {
-    <h1>Welcome to the Blazor shop!</h1>
-                <ProductList/>
-            }
+}
+else
+{
+    <AuthorizeView>
+        <NotAuthorized>
+            <h1>Welcome to the Blazor shop!</h1>
+        </NotAuthorized>
+        <Authorized>
+            <h1>Welcome back, @LocalStorage.GetItemAsString("username")!</h1>
+        </Authorized>
+    </AuthorizeView>
+    <ProductList/>
+}
 
 
 
