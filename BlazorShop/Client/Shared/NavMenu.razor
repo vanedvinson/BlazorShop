@@ -1,5 +1,7 @@
 ﻿@inject ICategoryService CategoryService
-@inject ISyncLocalStorageService LocalStorage
+@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NM
 
 <div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">BlazorShop</a>
@@ -58,8 +60,11 @@
         await CategoryService.LoadCategories();
     }
 
-    private void Logout()
+    private async void Logout()
     {
-        LocalStorage.RemoveItem("username");
+        await LocalStorage.RemoveItemAsync("username");
+        await AuthStateProvider.GetAuthenticationStateAsync();
+
+        NM.NavigateTo("");
     }
 }
