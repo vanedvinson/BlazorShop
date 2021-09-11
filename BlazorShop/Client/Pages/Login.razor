@@ -2,7 +2,7 @@
 
 @inject ILocalStorageService LocalStorage
 @inject NavigationManager NavigationManager
-
+@inject AuthenticationStateProvider AuthStateProvider
 
 <EditForm Model="user" OnSubmit="HandleLogin">
     <div  class="form-group">
@@ -24,6 +24,9 @@
         Console.WriteLine("Log me in!");
 
         await LocalStorage.SetItemAsync<string>("username", user.Username);
+        await AuthStateProvider.GetAuthenticationStateAsync();
+
+
         NavigationManager.NavigateTo("");
     }
 }
