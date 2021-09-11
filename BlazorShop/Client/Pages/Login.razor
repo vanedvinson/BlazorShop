@@ -1,5 +1,9 @@
 ﻿@page "/login"
 
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+
+
 <EditForm Model="user" OnSubmit="HandleLogin">
     <div  class="form-group">
         <label for="username">Username</label>
@@ -15,8 +19,11 @@
 @code {
     private User user = new User();
 
-    private void HandleLogin()
+    private async void HandleLogin()
     {
         Console.WriteLine("Log me in!");
+
+        await LocalStorage.SetItemAsync<string>("username", user.Username);
+        NavigationManager.NavigateTo("");
     }
 }
