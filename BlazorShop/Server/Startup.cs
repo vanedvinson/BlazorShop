@@ -1,6 +1,7 @@
 using BlazorShop.Server.Data;
 using BlazorShop.Server.Services.CategoryService;
 using BlazorShop.Server.Services.ProductService;
+using BlazorShop.Server.Services.StatsService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,7 @@ namespace BlazorShop.Server
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IStatsService, StatsService>();
 
             services.AddDbContext<DataContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
