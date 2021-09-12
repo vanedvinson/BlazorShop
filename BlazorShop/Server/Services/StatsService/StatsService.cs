@@ -1,4 +1,6 @@
 ﻿using BlazorShop.Server.Data;
+using BlazorShop.Shared.Classes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +18,31 @@ namespace BlazorShop.Server.Services.StatsService
         }
         public async Task<int> GetVisits()
         {
-            throw new NotImplementedException();
+            var stats = await _context.Stats.FirstOrDefaultAsync();
+            if(stats == null)
+            {
+                return 0;
+            }
+
+            return stats.Visits;
         }
 
-        public Task IncrementVisits()
+        public async Task IncrementVisits()
         {
-            throw new NotImplementedException();
+            var stats = await _context.Stats.FirstOrDefaultAsync();
+            if (stats == null)
+            {
+                _context.Stats.Add(new Stats { Visits = 1, LastVisit = DateTime.Now });
+            }
+            else
+            {
+                stats.Visits++;
+                stats.LastVisit = DateTime.Now;
+            }
+
+            await _context.SaveChangesAsync();
+
+
         }
     }
 }
